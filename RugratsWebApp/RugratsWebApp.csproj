@@ -132,6 +132,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\HgsModel.cs" />
+    <Compile Include="Models\HgsUserModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Login\_SessionController.cs" />
     <Compile Include="Models\MoneyTransferModel.cs" />
@@ -7032,6 +7034,8 @@
     <Content Include="Views\MoneyTransfers\ToOtherAccounts.cshtml" />
     <Content Include="Views\Account\AccountInfo.cshtml" />
     <Content Include="Views\Hgs\Index.cshtml" />
+    <Content Include="Views\Hgs\Create.cshtml" />
+    <Content Include="Views\Hgs\Payment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

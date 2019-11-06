@@ -1,48 +1,81 @@
-﻿@model IEnumerable<RugratsWebApp.Models.AccountModel>
+﻿
 
 @{
-    ViewBag.Title = "toOwnAccounts";
+    ViewBag.Title = "HGS Payments";
 }
-<h2>Transfer To Own Accounts</h2>
+    <div class="col-md-12">
 
-<div class="box box-warning">
-    <div class="box-header with-border">
-        <h3 class="box-title"></h3>
-    </div>
-    <!-- /.box-header -->
+        <h2>Subscriber Inquiry</h2>
 
-    <div class="box-body">
-        <div class="col-sm-12">
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title"></h3>
+                <div class="box-tools">
+                    <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                        <form action="/hgs/Create" method="get">
+                            <button type="submit" class="btn btn-block btn-success">Subscribe To New Hgs</button>
+                        </form>
 
-            <form action="/MoneyTransfers/ToOwnAccountsAsync" method="post">
-                <!-- text input -->
-                <div class="form-group">
-                    <label for="">Your Own Accounts</label>
-                    <select class="form-control" id="ReceiverAccountNo" name="ReceiverAccountNo">
-                        @if (Model.Count() > 0)
+                    </div>
+                </div>
+                
+            </div>
+            <!-- /.box-header -->
+            <div class="col-md-12">
+                @{
+                    try
+                    {
+                        if (TempData["status"].ToString() == "0")
                         {
-                            foreach (var item in Model)
-                            {
-                                <option value="@item.accountNo">@item.accountNo</option>
-                            }
+                            <div class="alert alert-danger alert-dismissible">
+                                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                @TempData["StatusDescription"].ToString()
+                            </div>
                         }
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>HGS No</label>
-                    <input class="form-control" name="hgsNo" placeholder="Enter ...">
-                </div>
-                <div class="form-group">
-                    <label>Amount</label>
-                    <input type="number" name="Amount" class="form-control" step="0.01" min="0" max="@ViewBag.netBlance" placeholder="Enter ...">
-                </div>
+                        else if (TempData["status"].ToString() == "1")
+                        {
+                            <div class="alert alert-success alert-dismissible">
+                                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                                @TempData["StatusDescription"].ToString()
+                            </div>
+                        }
 
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-info pull-right">Continue</button>
-                </div>
-            </form>
-        </div>
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            </div>
+            
+                <div class="box-body">
+                    <div class="col-sm-12">
 
+                        <form action="/hgs/payment" method="get">
+                            <!-- text input -->
+                            @*<div class="form-group">
+                            <label for="">Your Own Accounts</label>
+                            <select class="form-control" id="ReceiverAccountNo" name="ReceiverAccountNo">
+                                @if (Model.Count() > 0)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <option value="@item.accountNo">@item.accountNo</option>
+                                    }
+                                }
+                            </select>
+                        </div>*@
+                            <div class="form-group">
+                                <label>HGS Subscriber Number</label>
+                                <input class="form-control" name="hgsNo" placeholder="Enter ...">
+                            </div>
+
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-info pull-right">Continue</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
     </div>
-    <!-- /.box-body -->
-</div>

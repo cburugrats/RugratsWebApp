@@ -68,7 +68,16 @@ namespace RugratsWebApp.Controllers
                   });
                 task.Wait();
             }
-            return View(accounts);
+            if (accounts.Count>1)
+            {
+                return View(accounts);
+            }
+            else
+            {
+                TempData["status"] = 0;
+                TempData["StatusDescription"] = "You Have Only One Account.";
+                return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers");
+            }
         }
         [HttpPost]
         public async System.Threading.Tasks.Task<ActionResult> ToOwnAccountsAsync(FormCollection collection)
@@ -102,26 +111,26 @@ namespace RugratsWebApp.Controllers
                         {
                             TempData["status"] = 1;
                             TempData["StatusDescription"] = "Money Transfer Successful";
-                            return RedirectToAction("ToOwnAccounts", "MoneyTransfers",tMoney);
+                            return RedirectToAction("SenderToOwnAccounts", "MoneyTransfers");
                         }
                         else if (response == "4")
                         {
                             TempData["status"] = 0;
                             TempData["StatusDescription"] = "There's not enough money in the account.";
-                            return RedirectToAction("ToOwnAccounts", "MoneyTransfers", tMoney);
+                            return RedirectToAction("SenderToOwnAccounts", "MoneyTransfers");
                         }
                         else
                         {
                             TempData["status"] = 0;
                             TempData["StatusDescription"] = "Unknown error occurred.";
-                            return RedirectToAction("ToOwnAccounts", "MoneyTransfers", tMoney);
+                            return RedirectToAction("SenderToOwnAccounts", "MoneyTransfers");
                         }
                     }
                     else
                     {
                         TempData["status"] = 0;
                         TempData["StatusDescription"] = "Service is not responding.";
-                        return RedirectToAction("ToOwnAccounts", "MoneyTransfers", tMoney);
+                        return RedirectToAction("SenderToOwnAccounts", "MoneyTransfers");
                     }
                 }
             }
@@ -129,7 +138,7 @@ namespace RugratsWebApp.Controllers
             {
                 TempData["status"] = 0;
                 TempData["StatusDescription"] = "Unknown error occurred";
-                return RedirectToAction("ToOwnAccounts", "MoneyTransfers", tMoney);
+                return RedirectToAction("SenderToOwnAccounts", "MoneyTransfers");
             }
         }
         public ActionResult SenderToOtherAccounts()
@@ -197,32 +206,32 @@ namespace RugratsWebApp.Controllers
                         {
                             TempData["status"] = 1;
                             TempData["StatusDescription"] = "Money Transfer Successful";
-                            return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers", tMoney);
+                            return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers");
                         }
                         else if (response=="4")
                         {
                             TempData["status"] = 0;
                             TempData["StatusDescription"] = "There's not enough money in the account.";
-                            return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers", tMoney);
+                            return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers");
                         }
                         else if(response=="3")
                         {
                             TempData["status"] = 0;
                             TempData["StatusDescription"] = "Recipient account not found.";
-                            return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers", tMoney);
+                            return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers");
                         }
                         else
                         {
                             TempData["status"] = 0;
                             TempData["StatusDescription"] = "Unknown error occurred.";
-                            return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers", tMoney);
+                            return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers");
                         }
                     }
                     else
                     {
                         TempData["status"] = 0;
                         TempData["StatusDescription"] = "Service is not responding.";
-                        return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers", tMoney);
+                        return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers");
                     }
                 }
             }
@@ -230,7 +239,7 @@ namespace RugratsWebApp.Controllers
             {
                 TempData["status"] = 0;
                 TempData["StatusDescription"] = "Unknown error occurred";
-                return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers", tMoney);
+                return RedirectToAction("SenderToOtherAccounts", "MoneyTransfers");
             }
         }
 

@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<RugratsWebApp.Models.AccountModel>
 
 @{
-    ViewBag.Title = "toOwnAccounts";
+    ViewBag.Title = "Subscribe To New Hgs";
 }
-<h2>Transfer To Own Accounts</h2>
+    <h2>Subscribe To New Hgs</h2>
 
 <div class="box box-warning">
     <div class="box-header with-border">
@@ -14,18 +14,8 @@
     <div class="box-body">
         <div class="col-sm-12">
 
-            <form action="/MoneyTransfers/ToOwnAccountsAsync" method="post">
+            <form action="/hgs/CreateAsync" method="post">
                 <!-- text input -->
-
-                <div class="form-group">
-                    <label>Account No</label>
-                    <input type="text" value="@ViewBag.AccountNo" class="form-control" disabled="disabled">
-                    <input type="hidden" name="SenderAccountNo" value="@ViewBag.AccountNo">
-                </div>
-                <div class="form-group">
-                    <label>Net Balance</label>
-                    <input type="text" class="form-control" value="@ViewBag.netBlance" disabled="">
-                </div>
                 <div class="form-group">
                     <label for="">Your Own Accounts</label>
                     <select class="form-control" id="ReceiverAccountNo" name="ReceiverAccountNo">
@@ -33,11 +23,7 @@
                         {
                             foreach (var item in Model)
                             {
-                                if (item.accountNo != ViewBag.AccountNo)
-                                {
-                                    <option value="@item.accountNo">@item.accountNo</option>
-                                }
-
+                                <option value="@item.accountNo">@item.accountNo</option>
                             }
                         }
                     </select>
@@ -45,10 +31,6 @@
                 <div class="form-group">
                     <label>Amount</label>
                     <input type="number" name="Amount" class="form-control" step="0.01" min="0.01" max="@ViewBag.netBlance" placeholder="Enter ...">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <textarea class="form-control" name="description" rows="3" placeholder="Enter ..."></textarea>
                 </div>
                 <div class="box-footer">
                     <button type="submit" class="btn btn-info pull-right">Continue</button>
