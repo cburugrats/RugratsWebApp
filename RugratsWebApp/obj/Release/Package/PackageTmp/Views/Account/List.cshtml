@@ -1,0 +1,119 @@
+﻿@model IEnumerable<RugratsWebApp.Models.AccountModel>
+
+@{
+    ViewBag.Title = "List";
+}
+    <div class="col-xs-12">
+
+        @ViewData["depositMoneyStatus"]
+        <h2>Account List</h2>
+
+        <div class="box">
+            <div class="box-header">
+
+                <div class="box-tools">
+                    <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
+                        <form action="/Account/CreateAsync" method="get">
+                            <button type="submit" class="btn btn-block btn-success">New Account</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+                <div class="col-md-12">
+                    @{
+                        try
+                        {
+                            if (TempData["status"].ToString() == "0")
+                            {
+                                <div class="alert alert-danger alert-dismissible">
+                                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                    @TempData["StatusDescription"].ToString()
+                                </div>
+                            }
+                            else if (TempData["status"].ToString() == "1")
+                            {
+                                <div class="alert alert-success alert-dismissible">
+                                    <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                                    @TempData["StatusDescription"].ToString()
+                                </div>
+                            }
+
+                        }
+                        catch (Exception)
+                        {
+                        }
+
+                    }
+                </div>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <th>
+                                Account No
+                            </th>
+                            <th>
+                                Balance
+                            </th>
+                            <th>
+                                Blockage Amount
+                            </th>
+                            <th>
+                                Net Balance
+                            </th>
+                            <th>
+                                Opening Date
+                            </th>
+                            <th>
+                                Last Transaction Date
+                            </th>
+                            <th>
+                                Accoun Close
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        @if (Model.Count() > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.accountNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.balance)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.blockageAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.netBalance)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.openingDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.lastTransactionDate)
+                                    </td>
+                                    <td>
+                                        <form action="/Account/AccountInfo" method="get">
+                                            <input type="hidden" name="AccountNo" value="@item.accountNo" />
+                                            <button type="submit" class="btn btn-block btn-warning btn-xs">Account Info</button>
+                                        </form>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>

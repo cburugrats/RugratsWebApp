@@ -1,0 +1,47 @@
+﻿@model RugratsWebApp.Models.AccountModel
+
+@{
+    ViewBag.Title = "MoneyWithdraw";
+}
+
+<div class="box box-warning">
+    <div class="box-header with-border">
+        <h3 class="box-title">Withdraw Money</h3>
+    </div>
+    <!-- /.box-header -->
+    
+    <div class="box-body">
+        <div class="col-sm-12">
+            <form action="/Account/MoneyWithdrawAsync" method="post">
+                <!-- text input -->
+
+                <div class="form-group">
+                    <label>Account No</label>
+                    <input type="text" value="@Model.accountNo" class="form-control" disabled="disabled">
+                    <input type="hidden" name="accountNo" value="@Model.accountNo" />
+                </div>
+                <div class="form-group">
+                    <label>Opening Date</label>
+                    <input type="text" class="form-control" value="@Model.openingDate" disabled="">
+                </div>
+                <div class="form-group">
+                    <label>Last Transaction Date</label>
+                    <input type="text" class="form-control" value="@Model.lastTransactionDate" disabled="">
+                </div>
+                <div class="form-group">
+                    <label>Net Balance</label>
+                    <input type="text" class="form-control" value="@Model.netBalance" disabled="">
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" name="Balance" class="form-control" step="0.01" min="0" max="@Model.netBalance" placeholder="Enter ..." required>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-info pull-right">Continue</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <!-- /.box-body -->
+</div>
