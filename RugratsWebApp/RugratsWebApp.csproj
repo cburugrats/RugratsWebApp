@@ -127,6 +127,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MoneyTransfersController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -134,6 +135,7 @@
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\HgsModel.cs" />
     <Compile Include="Models\HgsUserModel.cs" />
+    <Compile Include="Models\httpRugratsConnettion.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Login\_SessionController.cs" />
     <Compile Include="Models\MoneyTransferModel.cs" />
@@ -7036,6 +7038,7 @@
     <Content Include="Views\Hgs\Index.cshtml" />
     <Content Include="Views\Hgs\Create.cshtml" />
     <Content Include="Views\Hgs\Payment.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

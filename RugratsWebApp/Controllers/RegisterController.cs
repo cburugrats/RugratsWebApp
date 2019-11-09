@@ -53,7 +53,7 @@ namespace RugratsWebApp.Controllers
                     // Json object to System.Net.Http content type
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
                     // Post Request to the URI
-                    HttpResponseMessage result = await client.PostAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/register", content);
+                    HttpResponseMessage result = await HttpRugartsConnettion.PostMessageAsync(content, "register");
                     // Check for result
                     if (result.IsSuccessStatusCode)
                     {
@@ -77,6 +77,11 @@ namespace RugratsWebApp.Controllers
                             ViewBag.RegisterResponse = "Unknown error occurred";
                             return View("Index");
                         }
+                    }
+                    else
+                    {
+                        ViewBag.RegisterResponse = "Services is not response";
+                        return View("Index");
                     }
                     return RedirectToAction("Index", "Home");
                 }

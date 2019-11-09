@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RugratsWebApp.Models;
+using RugratsWebApp.Models.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Web.Mvc;
 
 namespace RugratsWebApp.Controllers
 {
+    [_SessionController]
     public class HgsController : Controller
     {
         // GET: Hgs
@@ -159,7 +161,12 @@ namespace RugratsWebApp.Controllers
                   });
                 task.Wait();
             }
-
+            if (hgsUser==null)
+            {
+                TempData["status"] = 0;
+                TempData["StatusDescription"] = "HGS Subscriber Not Found.";
+                return RedirectToAction("Index", "Hgs");
+            }
             ViewBag.hgsNo = hgsUser.HgsNo;
             ViewBag.hgsBalance = hgsUser.balance;
             return View(accounts);
@@ -195,7 +202,7 @@ namespace RugratsWebApp.Controllers
                             TempData["StatusDescription"] = "Money Transfer Successful";
                             return RedirectToAction("Index", "Hgs");
                         }
-                        else if (response == "4")
+                        else if (response == "5")
                         {
                             TempData["status"] = 0;
                             TempData["StatusDescription"] = "There's not enough money in the account.";

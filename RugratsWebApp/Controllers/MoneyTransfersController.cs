@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using RugratsWebApp.Models;
+using RugratsWebApp.Models.Login;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,6 +12,7 @@ using System.Web.Mvc;
 
 namespace RugratsWebApp.Controllers
 {
+    [_SessionController]
     public class MoneyTransfersController : Controller
     {
         // GET: MoneyTransfers
@@ -57,8 +59,7 @@ namespace RugratsWebApp.Controllers
                 {
                     return true;
                 };
-                var task = client.GetAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/account/" + User.Identity.Name)
-                  .ContinueWith((taskwithresponse) =>
+                var task = client.GetAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/account/" + User.Identity.Name).ContinueWith((taskwithresponse) =>
                   {
                       var response = taskwithresponse.Result;
                       var jsonString = response.Content.ReadAsStringAsync();
@@ -66,6 +67,7 @@ namespace RugratsWebApp.Controllers
                       accounts = JsonConvert.DeserializeObject<List<AccountModel>>(jsonString.Result);
 
                   });
+                
                 task.Wait();
             }
             if (accounts.Count>1)

@@ -22,7 +22,6 @@ namespace RugratsWebApp.Controllers
 		{
             try
             {
-                // TODO: Add insert logic here
                 // Create a HttpClient
                 using (var client = new HttpClient())
                 {
@@ -34,7 +33,8 @@ namespace RugratsWebApp.Controllers
                     // Json object to System.Net.Http content type
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
                     // Post Request to the URI
-                    HttpResponseMessage result = await client.PostAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/account/openAnAccount", content);
+                    //HttpResponseMessage result = await client.PostAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/account/openAnAccount", content);
+                    HttpResponseMessage result = await HttpRugartsConnettion.PostMessageAsync(content, "account/openAnAccount");
                     // Check for result
                     if (result.IsSuccessStatusCode)
                     {
@@ -82,11 +82,6 @@ namespace RugratsWebApp.Controllers
             List<AccountModel> accounts = new List<AccountModel>();
             using (var client = new HttpClient())
             {
-                System.Net.ServicePointManager.ServerCertificateValidationCallback +=
-                (se, cert, chain, sslerror) =>
-                {
-                    return true;
-                };
                 var task = client.GetAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/account/" + User.Identity.Name)
                   .ContinueWith((taskwithresponse) =>
                   {

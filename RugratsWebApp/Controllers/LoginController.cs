@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using RugratsWebApp.Models;
-using RugratsWebApp.Models.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,41 +32,41 @@ namespace RugratsWebApp.Controllers
             {
                 try
                 {
-                    // TODO: Add insert logic here
-                    // Create a HttpClient
-                    using (var client = new HttpClient())
+                    // Create post body object
+                    // Serialize C# object to Json Object
+                    var serializedProduct = JsonConvert.SerializeObject(collection);
+                    // Json object to System.Net.Http content type
+                    StringContent content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
+                    // Post Request to the URI
+                    HttpResponseMessage result = await HttpRugartsConnettion.PostMessageAsync(content, "login"); 
+                    // Check for result
+                    if (result.IsSuccessStatusCode)
                     {
-
-                        // Create post body object
-                        // Serialize C# object to Json Object
-                        var serializedProduct = JsonConvert.SerializeObject(collection);
-                        // Json object to System.Net.Http content type
-                        var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
-                        // Post Request to the URI
-                        HttpResponseMessage result = await client.PostAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/login", content);
-                        // Check for result
-                        if (result.IsSuccessStatusCode)
+                        result.EnsureSuccessStatusCode();
+                        string response = await result.Content.ReadAsStringAsync();
+                        if (response == "1")
                         {
-                            result.EnsureSuccessStatusCode();
-                            string response = await result.Content.ReadAsStringAsync();
-                            if (response == "1")
-                            {
-                                FormsAuthentication.SetAuthCookie(collection.TcIdentityKey, true);
-                                return RedirectToAction("Index", "Home");
-                            }
-                            else if (response == "0")
-                            {
-                                //Bilinmeyen Hata
-                                ViewBag.LoginResponse = "You entered incorrect password or TC";
-                                return View("Index");
-                            }
-                            else
-                            {
-                                ViewBag.LoginResponse = "Unknown error occurred";
-                                return View("Index");
-                            }
+                            FormsAuthentication.SetAuthCookie(collection.TcIdentityKey, true);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else if (response == "0")
+                        {
+                            //Bilinmeyen Hata
+                            ViewBag.LoginResponse = "You entered incorrect password or TC";
+                            return View("Index");
+                        }
+                        else
+                        {
+                            ViewBag.LoginResponse = "Unknown error occurred";
+                            return View("Index");
                         }
                     }
+                    else
+                    {
+                        ViewBag.LoginResponse = "Service is not response";
+                        return View("Index");
+                    }
+
                 }
                 catch
                 {
