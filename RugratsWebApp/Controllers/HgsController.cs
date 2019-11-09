@@ -29,7 +29,7 @@ namespace RugratsWebApp.Controllers
                 {
                     return true;
                 };
-                var task = client.GetAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/hgs/" + User.Identity.Name)
+                var task = client.GetAsync("https://rugratswebapi.azurewebsites.net/api/hgs/" + User.Identity.Name)
                   .ContinueWith((taskwithresponse) =>
                   {
                       var response = taskwithresponse.Result;
@@ -56,7 +56,7 @@ namespace RugratsWebApp.Controllers
                 {
                     return true;
                 };
-                var task = client.GetAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/account/" + User.Identity.Name)
+                var task = client.GetAsync("https://rugratswebapi.azurewebsites.net/api/account/" + User.Identity.Name)
                   .ContinueWith((taskwithresponse) =>
                   {
                       var response = taskwithresponse.Result;
@@ -87,7 +87,7 @@ namespace RugratsWebApp.Controllers
                     // Json object to System.Net.Http content type
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
                     // Post Request to the URI
-                    HttpResponseMessage result = await client.PostAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/hgs/", content);
+                    HttpResponseMessage result = await client.PostAsync("https://rugratswebapi.azurewebsites.net/api/hgs/", content);
                     // Check for result
                     if (result.IsSuccessStatusCode)
                     {
@@ -137,7 +137,7 @@ namespace RugratsWebApp.Controllers
             HgsUserModel hgsUser = new HgsUserModel();
             using (var client = new HttpClient())
             {
-                var task = client.GetAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/account/" + User.Identity.Name)
+                var task = client.GetAsync("https://rugratswebapi.azurewebsites.net/api/account/" + User.Identity.Name)
                   .ContinueWith((taskwithresponse) =>
                   {
                       var response = taskwithresponse.Result;
@@ -150,7 +150,7 @@ namespace RugratsWebApp.Controllers
             }
             using (var client = new HttpClient())
             {
-                var task = client.GetAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/hgs/" + hgsNo)
+                var task = client.GetAsync("https://rugratswebapi.azurewebsites.net/api/hgs/" + hgsNo)
                   .ContinueWith((taskwithresponse) =>
                   {
                       var response = taskwithresponse.Result;
@@ -190,7 +190,7 @@ namespace RugratsWebApp.Controllers
                     // Json object to System.Net.Http content type
                     var content = new StringContent(serializedProduct, Encoding.UTF8, "application/json");
                     // Post Request to the URI
-                    HttpResponseMessage result = await client.PutAsync("https://bankappcorewebapirugrats.azurewebsites.net/api/hgs/toDepositMoney", content);
+                    HttpResponseMessage result = await client.PutAsync("https://rugratswebapi.azurewebsites.net/api/hgs/toDepositMoney", content);
                     // Check for result
                     if (result.IsSuccessStatusCode)
                     {
