@@ -88,7 +88,7 @@ namespace RugratsWebApp.Controllers
             MoneyTransferModel tMoney = new MoneyTransferModel();
             tMoney.senderAccountNo = collection["SenderAccountNo"].ToString();
             tMoney.receiverAccountNo = collection["ReceiverAccountNo"].ToString();
-            tMoney.amount = Convert.ToDecimal(collection["Amount"].ToString(), cultures);
+            tMoney.balanceSent = Convert.ToDecimal(collection["Amount"].ToString(), cultures);
             tMoney.statement = collection["description"].ToString();
             tMoney.realizationTime = DateTime.Now;
             try
@@ -183,7 +183,7 @@ namespace RugratsWebApp.Controllers
             MoneyTransferModel tMoney = new MoneyTransferModel();
             tMoney.senderAccountNo = collection["SenderAccountNo"].ToString();
             tMoney.receiverAccountNo = collection["ReceiverAccountNo"].ToString();
-            tMoney.amount = Convert.ToDecimal(collection["Amount"].ToString(), cultures);
+            tMoney.balanceSent = Convert.ToDecimal(collection["Amount"].ToString(), cultures);
             tMoney.statement = collection["description"].ToString();
             tMoney.realizationTime = DateTime.Now;
             try
