@@ -9,7 +9,7 @@ namespace RugratsWebApp.Models
     {
         public string receiverAccountNo { get; set; }
         public string senderAccountNo { get; set; }
-        public decimal balanceSent { get; set; }
+        public decimal amount { get; set; }
         public DateTime? realizationTime { get; set; }
         public string statement { get; set; }
         public string transferType { get; set; }

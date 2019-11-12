@@ -4,32 +4,91 @@
 }
 
 <h2>Building</h2>
+<div class="row">
+    <div class="col-md-3">
 
-<div class="box box-primary">
-    <div class="box-body box-profile">
-        <img class="profile-user-img img-responsive img-circle" src="~/Content/dist/img/avatar.png" alt="User profile picture">
-
-        <h3 class="profile-username text-center">Nina Mcintire</h3>
-
-        <p class="text-muted text-center">Software Engineer</p>
-        <div class="form-group">
-            <label>Text</label>
-            <input type="text" class="form-control" placeholder="Enter ...">
+        <!-- Profile Image -->
+        <div class="box box-primary">
+            <div class="box-body box-profile">
+                <img class="profile-user-img img-responsive img-circle" src="~/Content/dist/img/avatar.png" alt="Berkay Özönür">
+                <h3 class="profile-username text-center">Muhammet Sait KARABULAK</h3>
+                <p class="text-muted text-center">Öğrenci</p>
+                <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item"> <b>TCK :</b> 49234117450 </li>
+                    <li class="list-group-item"> <b>E-Posta :</b> m.sait.krblk@gmail.com</li>
+                    <li class="list-group-item"> <b>Telefon :</b> 05552264256 </li>
+                </ul>
+            </div>
+            <!-- /.box-body -->
         </div>
-        <div class="form-group">
-            <label>Text</label>
-            <input type="text" class="form-control" placeholder="Enter ...">
-        </div>
-        <div class="form-group">
-            <label>Text</label>
-            <input type="text" class="form-control" placeholder="Enter ...">
-        </div>
-        <div class="form-group">
-            <label>Text</label>
-            <input type="text" class="form-control" placeholder="Enter ...">
-        </div>
-
-        <a href="#" class="btn btn-primary btn-block"><b>Change Information</b></a>
+        <!-- /.box -->
+        
     </div>
-    <!-- /.box-body -->
+    <!-- /.col -->
+    <div class="col-md-9">
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#kullanici" data-toggle="tab">Bilgileri Güncelle</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="active tab-pane" id="kullanici">
+                    <form action="" method="post" id="admin_form" name="admin_form" class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Kullanıcı Kodu:</label>
+                            <div class="col-sm-5">
+                                <input name="ku_kullanici_kodu" type="text" class="form-control" value="152805017" disabled="">
+                                <input name="ku_kullanici_kodu" type="hidden" value="152805017">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Kullanıcı Adı :</label>
+                            <div class="col-sm-5">
+                                <input name="ku_adi" type="text" class="form-control" value="Muhammet Sait" size="55">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Kullanıcı Soyadı :</label>
+                            <div class="col-sm-5">
+                                <input name="ku_soyadi" type="text" class="form-control" value="KARABULAK" size="55">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"> Parola  :</label>
+                            <div class="col-sm-5">
+                                <input name="ku_parola" type="password" class="form-control" value="" size="55">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"> E-posta :</label>
+                            <div class="col-sm-5">
+                                <input name="ku_eposta" type="email" class="form-control" value="m.sait.krblk@gmail.com" size="55">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Cep Telefonu :</label>
+                            <div class="col-sm-5">
+                                <input name="ku_ceptel" type="text" class="form-control" value="05552264256" size="55">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">T.C. Kimlik No:</label>
+                            <div class="col-sm-5">
+                                <input name="ku_tckimlik" type="text" class="form-control" value="49234117450" size="55">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"> </label>
+                            <input type="submit" name="submit" class="btn btn-success" value="Bilgilerimi Güncelle">
+                            <a href="index.php?sayfa=users_list" class="btn btn-danger">Vazgeç</a>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+
+            </div>
+            <!-- /.tab-content -->
+        </div>
+        <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
 </div>
