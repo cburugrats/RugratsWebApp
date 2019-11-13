@@ -33,7 +33,7 @@ namespace RugratsWebApp.Controllers
             {
                 Regex digitsOnly = new Regex(@"^[0-9]{5}$");
                 bool a = digitsOnly.IsMatch(collection["phoneNumber"].ToString());
-                RegisterModel nRegister = new RegisterModel();
+                UpdateUserModel nRegister = new UpdateUserModel();
                 nRegister.TcIdentityKey = Int64.Parse(collection["TcIdentityKey"].ToString());
                 nRegister.userName = collection["TcIdentityKey"].ToString();
                 nRegister.surname = collection["surname"].ToString();

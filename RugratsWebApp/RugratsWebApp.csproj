@@ -141,6 +141,7 @@
     <Compile Include="Models\MoneyTransferModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\tcIdentityKeyModel.cs" />
+    <Compile Include="Models\UpdateUserModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\withDrawMoneyModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

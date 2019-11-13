@@ -168,7 +168,7 @@ namespace RugratsWebApp.Controllers
                 return RedirectToAction("Index", "Hgs");
             }
             ViewBag.hgsNo = hgsUser.HgsNo;
-            ViewBag.hgsBalance = hgsUser.balance;
+            ViewBag.hgsBalance = Convert.ToDouble(String.Format("{0:0.00}", hgsUser.balance));
             return View(accounts);
         }
         [HttpPost]

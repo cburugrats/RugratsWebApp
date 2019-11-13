@@ -73,17 +73,6 @@ namespace RugratsWebApp.Controllers
                     return View();
                 }
 
-                //Aşağıdaki if komutu gönderilen mail ve şifre doğrultusunda kullanıcı kontrolu yapar. Eğer kullanıcı var ise login olur.
-                if (collection.TcIdentityKey == "1" && collection.userPassword == "1")
-                {
-                    FormsAuthentication.SetAuthCookie(collection.TcIdentityKey, true);
-                    return RedirectToAction("Index", "Home");
-                }
-
-                else
-                {
-                    ModelState.AddModelError("", "EMail veya şifre hatalı!");
-                }
             }
             return RedirectToAction("Index", "Home");
         }

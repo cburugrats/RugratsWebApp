@@ -1,4 +1,4 @@
-﻿
+﻿@model RugratsWebApp.Models.UpdateUserModel
 @{
     ViewBag.Title = "Index";
 }
@@ -11,18 +11,17 @@
         <div class="box box-primary">
             <div class="box-body box-profile">
                 <img class="profile-user-img img-responsive img-circle" src="~/Content/dist/img/avatar.png" alt="Berkay Özönür">
-                <h3 class="profile-username text-center">Muhammet Sait KARABULAK</h3>
-                <p class="text-muted text-center">Öğrenci</p>
+                <h3 class="profile-username text-center">@Model.firstname @Model.surname</h3>
                 <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item"> <b>TCK :</b> 49234117450 </li>
-                    <li class="list-group-item"> <b>E-Posta :</b> m.sait.krblk@gmail.com</li>
-                    <li class="list-group-item"> <b>Telefon :</b> 05552264256 </li>
+                    <li class="list-group-item"> <b>TCK :</b> @Model.TcIdentityKey </li>
+                    <li class="list-group-item"> <b>E-Posta :</b> @Model.eMail</li>
+                    <li class="list-group-item"> <b>Telefon :</b> @Model.phoneNumber </li>
                 </ul>
             </div>
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
-        
+
     </div>
     <!-- /.col -->
     <div class="col-md-9">
@@ -32,54 +31,87 @@
             </ul>
             <div class="tab-content">
                 <div class="active tab-pane" id="kullanici">
-                    <form action="" method="post" id="admin_form" name="admin_form" class="form-horizontal" role="form">
+                    <form action="/Profile/IndexAsync" method="post" id="admin_form" name="admin_form" class="form-horizontal" role="form">
+                        @{
+                            try
+                            {
+                                if (TempData["status"].ToString() == "0")
+                                {
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                        @TempData["StatusDescription"].ToString()
+                                    </div>
+                                }
+                                else if (TempData["status"].ToString() == "1")
+                                {
+                                    <div class="alert alert-success alert-dismissible">
+                                        <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                                        @TempData["StatusDescription"].ToString()
+                                    </div>
+                                }
+
+                            }
+                            catch (Exception)
+                            {
+                            }
+
+                        }
+
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Kullanıcı Kodu:</label>
+                            <label for="firstname" class="col-sm-3 control-label">Firstname :</label>
+
                             <div class="col-sm-5">
-                                <input name="ku_kullanici_kodu" type="text" class="form-control" value="152805017" disabled="">
-                                <input name="ku_kullanici_kodu" type="hidden" value="152805017">
+                                <input type="text" class="form-control" id="firstname" name="firstname" value="@Model.firstname" placeholder="Firstname" maxlength="15" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Kullanıcı Adı :</label>
+                            <label for="surname" class="col-sm-3 control-label">Surname :</label>
+
                             <div class="col-sm-5">
-                                <input name="ku_adi" type="text" class="form-control" value="Muhammet Sait" size="55">
+                                <input type="text" class="form-control" id="surname" name="surname" value="@Model.surname" placeholder="Surname" maxlength="15" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Kullanıcı Soyadı :</label>
+                            <label for="TcIdentityKey" class="col-sm-3 control-label">TC :</label>
+
                             <div class="col-sm-5">
-                                <input name="ku_soyadi" type="text" class="form-control" value="KARABULAK" size="55">
+                                <input data-inputmask="&quot;mask&quot;: &quot;99999999999&quot;" value="@Model.TcIdentityKey" disabled data-mask="" type="text" class="form-control" placeholder="TC" required>
+                                <input type="hidden" Name="TcIdentityKey" value="@Model.TcIdentityKey" />
+                                <input type="hidden" Name="userName" value="@Model.TcIdentityKey" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"> Parola  :</label>
+                            <label for="eMail" class="col-sm-3 control-label">Email :</label>
+
                             <div class="col-sm-5">
-                                <input name="ku_parola" type="password" class="form-control" value="" size="55">
+                                <input type="email" class="form-control" id="eMail" name="eMail" placeholder="Email" value="@Model.eMail" maxlength="25" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label"> E-posta :</label>
+                            <label for="phoneNumber" class="col-sm-3 control-label">Phone :</label>
+
                             <div class="col-sm-5">
-                                <input name="ku_eposta" type="email" class="form-control" value="m.sait.krblk@gmail.com" size="55">
+                                <input type="text" class="form-control" data-inputmask="&quot;mask&quot;: &quot;9999999999&quot;" value="@Model.phoneNumber" data-mask="" id="phoneNumber" name="phoneNumber" placeholder="Phone" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">Cep Telefonu :</label>
+                            <label for="dateOfBirth" class="col-sm-3 control-label">Birthday :</label>
+
                             <div class="col-sm-5">
-                                <input name="ku_ceptel" type="text" class="form-control" value="05552264256" size="55">
+                                <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" max="2002-01-02" value="@Model.dateOfBirth" placeholder="Birtday" required>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">T.C. Kimlik No:</label>
+                            <label for="userPassword" class="col-sm-3 control-label">Password :</label>
+
                             <div class="col-sm-5">
-                                <input name="ku_tckimlik" type="text" class="form-control" value="49234117450" size="55">
+                                <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Password" maxlength="15" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label"> </label>
                             <input type="submit" name="submit" class="btn btn-success" value="Bilgilerimi Güncelle">
-                            <a href="index.php?sayfa=users_list" class="btn btn-danger">Vazgeç</a>
+                            <a href="/" class="btn btn-danger">Vazgeç</a>
                         </div>
                     </form>
                 </div>

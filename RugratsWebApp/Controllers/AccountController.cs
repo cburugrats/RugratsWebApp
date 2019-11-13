@@ -410,9 +410,9 @@ namespace RugratsWebApp.Controllers
                 task.Wait();
             }
             ViewBag.AccountNo = account.accountNo;
-            ViewBag.balance = account.balance;
-            ViewBag.blockageAmount = account.blockageAmount;
-            ViewBag.netBalance = account.netBalance;
+            ViewBag.balance = Convert.ToDouble(String.Format("{0:0.00}", account.balance)); 
+            ViewBag.blockageAmount = Convert.ToDouble(String.Format("{0:0.00}", account.blockageAmount));
+            ViewBag.netBalance = Convert.ToDouble(String.Format("{0:0.00}", account.netBalance));
             ViewBag.openingDate = account.openingDate;
             return View(tModel);
         }
