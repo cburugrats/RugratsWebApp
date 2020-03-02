@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace RugratsWebApp.Controllers
 {
-    [_SessionController]
+    [Authorize]
     public class MoneyTransfersController : Controller
     {
         // GET: MoneyTransfers

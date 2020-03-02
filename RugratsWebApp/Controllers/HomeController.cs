@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace RugratsWebApp.Controllers
 {
-    [_SessionController]
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()

@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace RugratsWebApp.Controllers
 {
-    [_SessionController]
+    [Authorize]
     public class HgsController : Controller
     {
         // GET: Hgs

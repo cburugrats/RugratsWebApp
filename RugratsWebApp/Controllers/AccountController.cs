@@ -13,13 +13,15 @@ using System.Web.Security;
 
 namespace RugratsWebApp.Controllers
 {
-    [_SessionController]
+    [Authorize]
     public class AccountController : Controller
 	{
         // GET: Account
         [HttpGet]
         public async System.Threading.Tasks.Task<ActionResult> CreateAsync()
 		{
+            FormsAuthentication.Timeout.Ticks.ToString();
+            FormsAuthentication a;
             try
             {
                 // Create a HttpClient

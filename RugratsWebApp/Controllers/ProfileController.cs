@@ -11,7 +11,7 @@ using System.Text;
 
 namespace RugratsWebApp.Controllers
 {
-    [_SessionController]
+    [Authorize]
     public class ProfileController : Controller
     {
         // GET: Profile
